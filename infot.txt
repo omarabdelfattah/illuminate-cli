@@ -1,0 +1,44 @@
+{
+  "ssh": {
+    "private_key": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW\nQyNTUxOQAAACCeI+G6MVmEyRAeYSsNPEA3UjxGmAVTQ5UAnjZFXydMOwAAAKBy3KPnctyj\n5wAAAAtzc2gtZWQyNTUxOQAAACCeI+G6MVmEyRAeYSsNPEA3UjxGmAVTQ5UAnjZFXydMOw\nAAAEBptOzWRDPxnSn6AvVXDJLqeM8uuvgDu7cY73B1DtQ8754j4boxWYTJEB5hKw08QDdS\nPEaYBVNDlQCeNkVfJ0w7AAAAF3BocHNlY2xpYi1nZW5lcmF0ZWQta2V5AQIDBAUG\n-----END OPENSSH PRIVATE KEY-----\n",
+    "host": "illuminate.bitech.com.sa",
+    "port": 22,
+    "username": "illuminate"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "illuminate_challenge",
+    "username": "candidate_019d43d8-58cb-7141-b25e-f068922d6cc7",
+    "password": "wE9iexj3K62MOqZ4Ko0X8MGT"
+  }
+}
+
+   STAGE 3: CENTROID OF CHAOS
+
+  All scripting tasks must be implemented as Laravel artisan commands. Your code will be reviewed.
+
+  The database contains incidents and neighborhoods.
+
+  Find all incidents within a donut around the centroid of neighborhood NB-7A2F:
+      Inner radius: 0.5 km
+      Outer radius: 2.0 km
+
+  Write artisan commands that:
+      1. Import the remote data into local SQLite with proper Eloquent models
+      2. Build a custom Eloquent relationship to query the donut. Not hasMany, belongsTo, or any built-in type. A new relation class, like how Laravel defines BelongsToMany or HasOne.
+      3. Order matching incidents by distance from the centroid
+      4. Extract the code from each incident and concatenate to reveal the flag
+
+      // In your Neighborhood model:
+      public function incidents(): YourCustomRelation
+      {
+      return new YourCustomRelation($this, ...);
+      }
+
+  Your SSH tunnel from Stage 2 still works.
+
+  illuminate submit <flag>
+
+ssh -i id_rsa -N -L 5433:localhost:5432 illuminate@illuminate.bitech.com.sa -v
+psql -h localhost -p 5433 -U candidate_019d43d8-58cb-7141-b25e-f068922d6cc7 -d illuminate_challenge
